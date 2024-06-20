@@ -27,6 +27,7 @@ img{
     <div class="container">
       <div class="vertical-center-row">
         <div class="row">
+          
           <div class="col-lg-12">
               <p style="font-size:168px">
               <a style="text-decoration: none" href="https://azure.microsoft.com/?WT.mc_id=academic-77460-alfredodeza">🚀</a>
@@ -38,9 +39,35 @@ img{
               <p>Use the buttons below to make use of the interactive (OpenAPI) documentation for trying out the API dynamically.
                 or browse the project source.
               </p>
-              <button onclick="window.location.href='/docs'" type="button" class="btn btn-info">Try it out</button>
+              
+              <form id="form">
+                <input type="text" id="input" placeholder="Enter text here">
+                <button type="button" id="button" class="btn btn-info">Generate</button>
+              </form>
+              <script>
+                const button = document.getElementById('button');
+                const form = document.getElementById('form');
+                button.addEventListener('click', async (event) => {
+                  event.preventDefault();
+                  const input = document.getElementById('input').value;
+                  const response = await fetch('/generate', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ length: input })
+                  });
+                  const data = await response.json();
+                  const result = document.getElementById('result');
+                  result.innerHTML = data.token;
+                });
+              </script>
               <button onclick="window.location.href='https://github.com/microsoft/codespaces-project-template-py/'" type="button" class="btn btn-info">Project source</button>
+              
+              <div id="result"></div>
+              
             </div>
+
           </div>
         </div>
       </div>

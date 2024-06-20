@@ -41,7 +41,7 @@
 				"ms-python.python",
 				"ms-python.vscode-pylance",
         		"GitHub.copilot",
-				"ms-python.black-formatter",
+				"ms-python.black-formatter"
 			]
 		}
 	},
